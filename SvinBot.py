@@ -9,7 +9,7 @@ import telepot
 import Pic, Env, Health, Tools
 
 t_key_file = open('telegram.json').read()
-TELEGRAM_KEY = json.loads(t_key_file).read()['token']
+TELEGRAM_KEY = json.loads(t_key_file)['token']
 
 bot_mode = 0
 
@@ -24,12 +24,12 @@ def handle(msg):
 	if command == '/get_pic':
 		pic = Pic.get_pic(user_id)
 		pic_file = open(pic,'rb')
-    	bot.sendPhoto(chat_id, pic_file)
+	    	bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 	elif command == '/get_temp':
-		msg_txt = cmd_getEnv.message()
-		bot.sendMessage(chat_id, msg_txt, 'Markdown')
+		msg_txt = Env.get_msg()
+		bot.sendMessage(chat_id, str(msg_txt), 'Markdown')
 		bot_mode = 0
 
 	elif command == '/bp':	
@@ -51,7 +51,7 @@ def handle(msg):
 			bot_mode = 0
 
 
-bot = telepot.Bot('TELEGRAM_KEY')
+bot = telepot.Bot(TELEGRAM_KEY)
 bot.message_loop(handle)
 while 1:
     time.sleep(10)

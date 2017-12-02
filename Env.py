@@ -11,24 +11,26 @@ def  get_cur_vals():
     pascals = sensor.read_pressure()
     mmhg = '%.1f' % (pascals * 0.00750062)
     humidity = '%.1f' % sensor.read_humidity()
-    
-    return degrees, mmhg, humidity 
+
+    return degrees, mmhg, humidity
 
 
 def build_msg(degrees, mmhg, humidity):
-    degree_sign = u'\N{DEGREE SIGN}'
+    #degree_sign = u'\N{DEGREE SIGN}'
+
     dt_now = datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')
 
     msg_txt = '''*Conditions for %s*
-Temperature:  %s %sC
+Temperature:  %s %s C
 Humidity:         %s %% 
 Pressure:         %s mmHg
-''' % (dt_now, degrees, degree_sign, humidity, mmhg)
+''' % (dt_now, degrees, 'degr.',  humidity, mmhg)
 
     return msg_txt
-		
 
-def get_msg(): 
+
+def get_msg():
     temp, press, hum = get_cur_vals()
-    
+
     return build_msg(temp, press, hum)
+
