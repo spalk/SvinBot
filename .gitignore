@@ -1,0 +1,13 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+Adafruit_BME280.py
+
+access.json
+gdrive.json
+telegram.json
+
+.vscode
