@@ -6,10 +6,12 @@ import json
 
 import telepot
 
-import Pic, Env, Health, Tools
+import Pic, Env, Health, Tools, Graph
 
 t_key_file = open('telegram.json').read()
 TELEGRAM_KEY = json.loads(t_key_file)['token']
+
+Tools.setStartTime()
 
 bot_mode = 0
 
@@ -24,13 +26,36 @@ def handle(msg):
 	if command == '/get_pic':
 		pic = Pic.get_pic(user_id)
 		pic_file = open(pic,'rb')
-	    	bot.sendPhoto(chat_id, pic_file)
+	    bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 	elif command == '/get_temp':
 		msg_txt = Env.get_msg()
 		bot.sendMessage(chat_id, str(msg_txt), 'Markdown')
 		bot_mode = 0
+
+	elif command == '/uptime':
+		bot.sendMessage(chat_id, str(Tools.getUptime()))
+		bot_mode = 0
+
+	elif command == '/get_temp_graph':
+		graph_pic = Graph.get_temp(user_id)
+		pic_file = open(graph_pic,'rb')
+	    bot.sendPhoto(chat_id, pic_file)
+		bot_mode = 0
+
+	elif command == '/get_hum_graph':
+		graph_pic = Graph.get_humid(user_id)
+		pic_file = open(graph_pic,'rb')
+	    bot.sendPhoto(chat_id, pic_file)
+		bot_mode = 0
+
+	elif command == '/get__graph':
+		graph_pic = Graph.get_temp(user_id)
+		pic_file = open(graph_pic,'rb')
+	    bot.sendPhoto(chat_id, pic_file)
+		bot_mode = 0
+
 
 	elif command == '/bp':	
 		bot_mode = 'body_pressure'
