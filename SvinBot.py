@@ -26,7 +26,7 @@ def handle(msg):
 	if command == '/get_pic':
 		pic = Pic.get_pic(user_id)
 		pic_file = open(pic,'rb')
-	    bot.sendPhoto(chat_id, pic_file)
+		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 	elif command == '/get_temp':
@@ -47,13 +47,13 @@ def handle(msg):
 	elif command == '/get_hum_graph':
 		graph_pic = Graph.get_humid(user_id)
 		pic_file = open(graph_pic,'rb')
-	    bot.sendPhoto(chat_id, pic_file)
+		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 	elif command == '/get__graph':
 		graph_pic = Graph.get_temp(user_id)
 		pic_file = open(graph_pic,'rb')
-	    bot.sendPhoto(chat_id, pic_file)
+		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 
