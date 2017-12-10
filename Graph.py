@@ -26,8 +26,8 @@ def get_data(field_num, field_name, results):
 def get_pic(title, labels, data, pic_name):
         line_chart = pygal.Line(
             x_label_rotation=90, 
-            interpolate='lagrange',
-            stroke_style={'width': 5, 'linecap': 'round', 'linejoin': 'round'}
+            #interpolate='lagrange',
+            stroke_style={'width': 5} #, 'linecap': 'round', 'linejoin': 'round'}
             )
         line_chart.title = title
         line_chart.x_labels = labels
@@ -57,6 +57,7 @@ def get_humid(usr_id, values_num = 30):
 
 
 def get_temp_hum(usr_id):
+    values_num = 60
     labels, t_vals = get_data(1, 'field1', values_num)
     labels, h_vals = get_data(3, 'field3', values_num)
     pic_name = "t+h_%s.png" % usr_id
@@ -65,13 +66,13 @@ def get_temp_hum(usr_id):
     chart = pygal.Line(
         title='Temerature & Humidity',
         x_label_rotation=90, 
-        interpolate='lagrange',
-        stroke_style={'width': 5, 'linecap': 'round', 'linejoin': 'round'}
+        #interpolate='lagrange',
+        stroke_style={'width': 5}
         )
     chart.x_labels = labels
     chart.add('T', t_vals)
     chart.add('H', h_vals, secondary=True)
-    line_chart.render_to_png(full_name)
+    chart.render_to_png(full_name)
     return full_name
 
 
