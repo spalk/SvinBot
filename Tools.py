@@ -10,6 +10,7 @@ Good luck!'''
 
 
 def setStartTime():
+    global startTime	
     startTime = datetime.datetime.now()
 
 def getUptime():

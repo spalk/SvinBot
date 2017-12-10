@@ -21,7 +21,7 @@ def handle(msg):
 	user_id = msg['from']['id']
 	chat_id = msg['chat']['id']
 	command = msg['text']
-	print 'Got command: %s' % command
+	print ('Got command: %s' % command)
 
 	if command == '/get_pic':
 		pic = Pic.get_pic(user_id)
@@ -41,7 +41,7 @@ def handle(msg):
 	elif command == '/get_temp_graph':
 		graph_pic = Graph.get_temp(user_id)
 		pic_file = open(graph_pic,'rb')
-	    bot.sendPhoto(chat_id, pic_file)
+		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
 	elif command == '/get_hum_graph':
@@ -50,8 +50,8 @@ def handle(msg):
 		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
-	elif command == '/get__graph':
-		graph_pic = Graph.get_temp(user_id)
+	elif command == '/get_press_graph':
+		graph_pic = Graph.get_press(user_id)
 		pic_file = open(graph_pic,'rb')
 		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
