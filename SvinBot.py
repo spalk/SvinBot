@@ -56,6 +56,11 @@ def handle(msg):
 		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
+	elif command == '/get_t_h':
+		graph_pic = Graph.get_temp_hum(user_id)
+		pic_file = open(graph_pic,'rb')
+		bot.sendPhoto(chat_id, pic_file)
+		bot_mode = 0
 
 	elif command == '/bp':	
 		bot_mode = 'body_pressure'
