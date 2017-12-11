@@ -11,15 +11,19 @@ CH_ID = "368739"
 GR_PATH = "img"
 
 def get_data(field_num, field_name, results):
-        url = 'https://api.thingspeak.com/channels/%s/fields/%s.json?results=%s' % (CH_ID, field_num, results)
+        url = 'https://api.thingspeak.com/channels/%s/fields/%s.json?results=%s&timezone=Europe/Moscow' % (CH_ID, field_num, results)
         feed = urlopen(url).read().decode('utf8')
         j = json.loads(feed)
 
         labs = []
         vals = []
         for i in j['feeds']:
-                labs.append(datetime.datetime.strptime(i['created_at'], '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M'))
+                labs.append(datetime.datetime.strptime(
+                    i['created_at'], 
+                    '%Y-%m-%dT%H:%M:%SZ'
+                    ).strftime('%H:%M'))
                 vals.append(float(i[field_name]))
+        del labs[::2]
         return labs, vals
 
 
@@ -74,6 +78,3 @@ def get_temp_hum(usr_id):
     chart.add('H', h_vals, secondary=True)
     chart.render_to_png(full_name)
     return full_name
-
-
-
