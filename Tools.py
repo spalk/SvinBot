@@ -24,6 +24,10 @@ def getUptime():
 
 
 def check_access(user_id, command):
+    '''
+    Checking user id in access list and available commands for this particular 
+    user. Returns True if ok or message if not ok. 
+    '''
     uid = str(user_id)
     if uid in ACCESS_LIST.keys():
         if command[1:] in ACCESS_LIST[uid]:
