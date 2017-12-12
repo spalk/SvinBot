@@ -24,9 +24,13 @@ def handle(msg):
 	print ('Got command: %s' % command)
 
 	if command == '/get_pic':
-		pic = Pic.get_pic(user_id)
-		pic_file = open(pic,'rb')
-		bot.sendPhoto(chat_id, pic_file)
+		access = Tools.check_access(user_id, command)
+		if access == True:
+			pic = Pic.get_pic(user_id)
+			pic_file = open(pic,'rb')
+			bot.sendPhoto(chat_id, pic_file)
+		else:
+			bot.sendMessage(chat_id, access)
 		bot_mode = 0
 
 	elif command == '/get_temp':
@@ -35,7 +39,11 @@ def handle(msg):
 		bot_mode = 0
 
 	elif command == '/uptime':
-		bot.sendMessage(chat_id, str(Tools.getUptime()))
+		access = Tools.check_access(user_id, command)
+		if access == True:
+			bot.sendMessage(chat_id, str(Tools.getUptime()))
+		else:
+			bot.sendMessage(chat_id, access)
 		bot_mode = 0
 
 	elif command == '/get_temp_graph':
