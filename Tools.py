@@ -9,9 +9,6 @@ DEFAULT_MESSAGE = '''*Here is what you can do:*
 - to send Olya's blood pressure in Google Docs, use  /bp command. 
 Good luck!'''
 
-access_file = open('access.json').read()
-ACCESS_LIST = json.loads(access_file)
-
 def setStartTime():
     global startTime	
     startTime = datetime.datetime.now()
@@ -22,20 +19,38 @@ def getUptime():
     """
     return datetime.datetime.now() - startTime
 
+def read_access_list():
+    '''
+    Reading access.json file and returns access list as dict
+    '''
+    access_file = open('access.json')
+    access_file_read = access_file.read()
+    access_list = json.loads(access_file_read)
+    access_file.close()
+    return access_list
 
 def check_access(user_id, command):
     '''
     Checking user id in access list and available commands for this particular 
     user. Returns True if ok or message if not ok. 
     '''
+
+    global ACCESS_LIST
+
     uid = str(user_id)
+    
     if uid in ACCESS_LIST.keys():
         if command[1:] in ACCESS_LIST[uid]:
             return True
         else:
-            return 'Sorry, this command is not available for you...'
+            ACCESS_LIST = read_access_list()
+            if command[1:] in ACCESS_LIST[uid]:
+                return True
+            else:
+                return 'Sorry, this command is not available for you...'
     else:
         return 'Sorry, you are not in Access List. Ask admin to add your User ID: %s' % uid
 
     
 
+ACCESS_LIST = read_access_list()

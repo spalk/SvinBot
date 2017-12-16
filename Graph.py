@@ -7,7 +7,7 @@ import datetime
 
 import pygal
 
-CH_ID = "368739"
+CH_ID = "368739"  # thingspeak channel ID
 GR_PATH = "img"
 
 def get_data(field_num, field_name, results):
@@ -30,6 +30,7 @@ def get_data(field_num, field_name, results):
             else: 
                 labs.append('')
             vals.append(round(float(i[field_name]), 1))
+        print(vals)
         return labs, vals
 
 

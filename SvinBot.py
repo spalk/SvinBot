@@ -70,11 +70,16 @@ def handle(msg):
 		bot.sendPhoto(chat_id, pic_file)
 		bot_mode = 0
 
-	elif command == '/bp':	
-		bot_mode = 'body_pressure'
-		msg_txt = '''Input your blood pressure in any format...'''
-		bot.sendMessage(chat_id,msg_txt)
-
+	elif command == '/bp':
+		access = Tools.check_access(user_id, command)
+		if access == True:
+			bot_mode = 'body_pressure'
+			msg_txt = '''Input your blood pressure in any format...'''
+			bot.sendMessage(chat_id,msg_txt)
+		else:
+			bot.sendMessage(chat_id, access)
+			bot_mode = 0	
+		
 	else:
 		if bot_mode == 'body_pressure':
 			result = Health.send_bp(command)
