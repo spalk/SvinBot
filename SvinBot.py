@@ -6,7 +6,7 @@ import json
 
 import telepot
 
-import Pic, Env, Health, Tools, Graph
+import Pic, Env, Health, Tools, Graph, Sound
 
 t_key_file = open('telegram.json').read()
 TELEGRAM_KEY = json.loads(t_key_file)['token']
@@ -95,6 +95,9 @@ def handle(msg):
 
 
 bot = telepot.Bot(TELEGRAM_KEY)
+
+Sound.alert(bot)
+
 bot.message_loop(handle)
 while 1:
     time.sleep(10)
