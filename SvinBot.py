@@ -78,8 +78,8 @@ def handle(msg):
 			bot.sendMessage(chat_id,msg_txt)
 		else:
 			bot.sendMessage(chat_id, access)
-			bot_mode = 0	
-		
+			bot_mode = 0
+
 	else:
 		if bot_mode == 'body_pressure':
 			result = Health.send_bp(command)
