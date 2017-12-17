@@ -30,7 +30,7 @@ def get_data(field_num, field_name, results):
             else: 
                 labs.append('')
             vals.append(round(float(i[field_name]), 1))
-        print(vals)
+        #print(vals)
         return labs, vals
 
 

@@ -3,6 +3,7 @@
 import time
 import datetime
 import json
+import threading
 
 import telepot
 
@@ -95,9 +96,7 @@ def handle(msg):
 
 
 bot = telepot.Bot(TELEGRAM_KEY)
-
-Sound.alert(bot)
-
 bot.message_loop(handle)
+#Sound.alert(bot)
 while 1:
     time.sleep(10)
