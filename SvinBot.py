@@ -97,6 +97,6 @@ def handle(msg):
 
 bot = telepot.Bot(TELEGRAM_KEY)
 bot.message_loop(handle)
-#Sound.alert(bot)
+# Sound.alert(bot)
 while 1:
     time.sleep(10)
