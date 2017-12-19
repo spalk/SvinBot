@@ -94,9 +94,8 @@ def handle(msg):
 			bot.sendMessage(chat_id, msg_txt, 'Markdown')
 			bot_mode = 0
 
-
 bot = telepot.Bot(TELEGRAM_KEY)
 bot.message_loop(handle)
-# Sound.alert(bot)
+Sound.alert(bot)
 while 1:
     time.sleep(10)
