@@ -81,13 +81,30 @@ def handle(msg):
 			bot.sendMessage(chat_id, access)
 			bot_mode = 0
 
+	elif command == '/w':
+		access = Tools.check_access(user_id, command)
+		if access == True:
+			bot_mode = 'weight'
+			msg_txt = '''Input your weight in any format...'''
+			bot.sendMessage(chat_id,msg_txt)
+		else:
+			bot.sendMessage(chat_id, access)
+			bot_mode = 0
+
 	else:
 		if bot_mode == 'body_pressure':
 			result = Health.send_bp(command)
 			if result:
 				bot.sendMessage(chat_id, "Successful!")
 			else: 
-				bot.sendMessage(chat_id, "Somethign wrong :(")
+				bot.sendMessage(chat_id, "Something wrong :(")
+			bot_mode = 0
+		elif bot_mode == 'weight':
+			result = Health.send_w(command)
+			if result:
+				bot.sendMessage(chat_id, "Successful!")
+			else: 
+				bot.sendMessage(chat_id, "Something wrong :(")
 			bot_mode = 0
 		else:
 			msg_txt = Tools.DEFAULT_MESSAGE
@@ -96,6 +113,6 @@ def handle(msg):
 
 bot = telepot.Bot(TELEGRAM_KEY)
 bot.message_loop(handle)
-Sound.alert(bot)
+#Sound.alert(bot)
 while 1:
     time.sleep(10)
