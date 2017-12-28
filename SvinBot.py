@@ -22,7 +22,8 @@ def handle(msg):
 	user_id = msg['from']['id']
 	chat_id = msg['chat']['id']
 	command = msg['text']
-	print ('Got command: %s' % command)
+	dtnow = datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')
+	print ('%s - %s - Got command: %s' % (dtnow, user_id, command))
 
 	if command == '/get_pic':
 		access = Tools.check_access(user_id, command)
