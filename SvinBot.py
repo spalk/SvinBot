@@ -7,7 +7,9 @@ import threading
 
 import telepot
 
-import Pic, Env, Health, Tools, Graph, Sound
+import Pic, Env, Health, Tools, Graph, Sound, LED
+
+LED.welcome_blink()
 
 t_key_file = open('telegram.json').read()
 TELEGRAM_KEY = json.loads(t_key_file)['token']
@@ -18,6 +20,8 @@ bot_mode = 0
 
 def handle(msg):
 	global bot_mode
+
+	LED.one_pink_blink()
 
 	user_id = msg['from']['id']
 	chat_id = msg['chat']['id']
