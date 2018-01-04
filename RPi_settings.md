@@ -69,7 +69,10 @@ To autorun script after loading Raspberry add command line to the end of file `/
 python /home/pi/my-soft/my-script.py &
 ```
 Be careful with this file. Mistake can make loading of Raspberry impossible. 
+<<<<<<< HEAD
 
 ## Useful commands 
 * `nmap -sn 192.168.1.0/24` - scan hosts in your network
 * `gpio readall` - GPIO pins status 
+=======
+>>>>>>> 1673d498454c07533939909a53ae51cf77630492
