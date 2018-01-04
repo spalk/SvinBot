@@ -1,7 +1,7 @@
-#Raspberry Pi 3 setting up step by step
+# Raspberry Pi 3 setting up step by step
 _Actual for January 2018_
 
-##Burning Rasbian Image on SD card
+## Burning Rasbian Image on SD card
 Download last image of [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) from the official Raspberry site. Do not use NOOBS, take Raspian Lite (without Desktop) directly. Burn it on SD card with [etcher](https://etcher.io/).
 
 ##Activating SSH 
