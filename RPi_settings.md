@@ -2,15 +2,16 @@
 _Actual for January 2018_
 
 ## Burning Rasbian Image on SD card
-Download last image of [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) from the official Raspberry site. Do not use NOOBS, take Raspian Lite (without Desktop) directly. Burn it on SD card with [etcher](https://etcher.io/).
+1. Don't use NOOBS, use Raspian  directly. Download last image of **Raspbian Lite** (without Desktop) from [the official Raspberry site](https://www.raspberrypi.org/downloads/raspbian/).  
+2. Burn it on SD card with [etcher](https://etcher.io/).
 
 ## Activating SSH 
-To activate SSH - create empty file "SSH" on BOOT partition on SD card before incerting it in Raspberry PI.
-After loading Raspberry Pi find out IP of Raspberry and you can connect with SSH. 
+1. **Befor inserting SD card in Raspberry!** To activate SSH - create empty file "SSH" on BOOT partition on SD card.
+2. Insert SD card in Raspberry and load it. 
+3. Find out IP address of Raspberry with **nmap** (`nmap -sn 192.168.1.0/24`) or on your router. 
+4. Connect: `ssh pi@ip_address`. Default password is **raspberry**.
 
 ## Activating and setup WiFi
-  * `sudo iwlist wlan0 scan` - list of all availiable networks
-
   * `/etc/dhcpcd.conf` - config where you cat set up static IP adress for your Raspberry. Add at the end for WiFi: 
 ```
 interface wlan0
@@ -45,10 +46,11 @@ If you have more than one Raspberry Pi's it's good idea to change the hostname:
 * `python-pip`
 
 ### Installing from source: 
-* **wiringPi**
-`git clone git://git.drogon.net/wiringPi` - clone source code
-`./build` - build 
-`gpio readall` - test. You should see a status table of GPIO pins 
+* `wiringPi`
+  1. `git clone git://git.drogon.net/wiringPi` - clone source code
+  2. `cd wiringPi` 
+  2. `./build`
+  3. `gpio readall` - test. You should see a status table of GPIO pins.
 
 ### Installing python3 packages (`sudo pip3 install`):
 * `telepot` - for Telegram
@@ -69,10 +71,9 @@ To autorun script after loading Raspberry add command line to the end of file `/
 python /home/pi/my-soft/my-script.py &
 ```
 Be careful with this file. Mistake can make loading of Raspberry impossible. 
-<<<<<<< HEAD
 
 ## Useful commands 
+* `sudo iwlist wlan0 scan` - list of all availiable networks
 * `nmap -sn 192.168.1.0/24` - scan hosts in your network
 * `gpio readall` - GPIO pins status 
-=======
->>>>>>> 1673d498454c07533939909a53ae51cf77630492
+
