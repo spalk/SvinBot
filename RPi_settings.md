@@ -72,8 +72,11 @@ python /home/pi/my-soft/my-script.py &
 ```
 Be careful with this file. Mistake can make loading of Raspberry impossible. 
 
-## Useful commands 
+## Usefull commands 
 * `sudo iwlist wlan0 scan` - list of all availiable networks
 * `nmap -sn 192.168.1.0/24` - scan hosts in your network
 * `gpio readall` - GPIO pins status 
 
+
+## Usefull links
+* [pinout.xyz](https://pinout.xyz/#)
