@@ -29,6 +29,9 @@ network={
 }
 ```
 
+##  Configuration
+* `raspi-config` 
+
 ## Change hostname
 If you have more than one Raspberry Pi's it's good idea to change the hostname: 
   * `/etc/hostname`
@@ -44,6 +47,7 @@ If you have more than one Raspberry Pi's it's good idea to change the hostname:
 * `tree`
 * `python3-pip`
 * `python-pip`
+* `screen`
 
 ### Installing from source: 
 * `wiringPi`
@@ -63,6 +67,8 @@ If you have more than one Raspberry Pi's it's good idea to change the hostname:
   * `cairosvg`
   * `tinycss`
   * `cssselect`  
+  sudo apt-get install python3-cairo
+
 * `picamera` - Pi Camera
 
 ## Autorun script
@@ -71,6 +77,24 @@ To autorun script after loading Raspberry add command line to the end of file `/
 python /home/pi/my-soft/my-script.py &
 ```
 Be careful with this file. Mistake can make loading of Raspberry impossible. 
+
+## Streaming video 
+
+First you neen intall vlc
+
+```
+sudo apt-get update
+sudo apt-get install vlc
+```
+
+Start streamnig:
+`raspivid -o - -t 0 -hf -w 640 -h 360 -fps 25 | cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554}' :demux=h264`
+
+Run VLC on remote device using link: 
+`rtsp://rpi_with_camera_ip_address:8554/`
+
+
+
 
 ## Usefull commands 
 * `sudo iwlist wlan0 scan` - list of all availiable networks

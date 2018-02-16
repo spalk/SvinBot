@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import time
 import datetime
 import json
@@ -11,7 +12,8 @@ import Pic, Env, Health, Tools, Graph, Sound, LED
 
 LED.welcome_blink()
 
-t_key_file = open('telegram.json').read()
+t_key_file_path = os.path.join(os.path.realpath(__file__),'telegram.json')
+t_key_file = open(t_key_file_path).read()
 TELEGRAM_KEY = json.loads(t_key_file)['token']
 
 Tools.setStartTime()
