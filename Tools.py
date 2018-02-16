@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+import sys
 import datetime
 import json
 
@@ -23,7 +25,8 @@ def read_access_list():
     '''
     Reading access.json file and returns access list as dict
     '''
-    access_file = open('access.json')
+    access_file_path = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),'access.json')
+    access_file = open(access_file_path)
     access_file_read = access_file.read()
     access_list = json.loads(access_file_read)
     access_file.close()
